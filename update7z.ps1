@@ -1,5 +1,4 @@
-﻿# Check if 7-Zip is installed by querying the uninstall registry key
-$sevenZipInstalled = $false
+﻿$sevenZipInstalled = $false
 $sevenZipRegistry = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -like "7-Zip*" }
 
 if ($sevenZipRegistry -ne $null) {
