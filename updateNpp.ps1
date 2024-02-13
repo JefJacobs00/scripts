@@ -18,6 +18,7 @@ if ($applicationRegistry -ne $null) {
 
 
 if ($applicationInstalled) {
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $64bit = $applicationRegistry.DisplayName.Contains("x64");
     $v8 = $applicationRegistry.MajorVersion.Equals('8');
     # v8.6.2/npp.8.6.2.Installer.x64.exe
