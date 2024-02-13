@@ -2,9 +2,6 @@
 $applicationRegistry = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -like "Notepad++*" }
 $w32 = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | where-Object DisplayName -like 'NotePad++*'
 
-Write-Host $applicationRegistry.MajorVersion;
-Write-Host $applicationRegistry.MinorVersion;
-
 if ($applicationRegistry -ne $null) {
     $applicationInstalled = $true
     Write-Host "Notepad++ is installed.";
@@ -17,12 +14,17 @@ if ($applicationRegistry -ne $null) {
 }
 
 
+
 if ($applicationInstalled) {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $64bit = $applicationRegistry.DisplayName.Contains("x64");
-    $v8 = $applicationRegistry.MajorVersion.Equals('8');
+    
+    if($applicationRegistry.MajorVersion -ne '7'){
+        Write-Host "Uninstalling previous version ($applicationRegistry.MajorVersion) before updating"
+        Start-Process -FilePath $applicationRegistry.UninstallString -Args "/S" -Verb RunAs -Wait
+    }
     # v8.6.2/npp.8.6.2.Installer.x64.exe
-    $dlurl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v"+ (&{If($v8){"8.6.2/npp.8.6.2.Installer"} Else {"7.9.5/npp.7.9.5.Installer"}}) + (&{If($64bit){".x64.exe"} Else {".exe"}})
+    $dlurl = "https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v8.6.2/npp.8.6.2.Installer" + (&{If($64bit){".x64.exe"} Else {".exe"}})
     Write-Host "Downloading program from $dlurl"
     $installerPath = Join-Path "c:/temp/" (Split-Path $dlurl -Leaf)
     Invoke-WebRequest $dlurl -OutFile $installerPath
