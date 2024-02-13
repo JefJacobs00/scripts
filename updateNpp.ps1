@@ -1,5 +1,6 @@
 ﻿$applicationInstalled = $false
 $applicationRegistry = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.DisplayName -like "Notepad++*" }
+$w32 = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* | where-Object DisplayName -like 'NotePad++*'
 
 Write-Host $applicationRegistry.MajorVersion;
 Write-Host $applicationRegistry.MinorVersion;
@@ -7,6 +8,10 @@ Write-Host $applicationRegistry.MinorVersion;
 if ($applicationRegistry -ne $null) {
     $applicationInstalled = $true
     Write-Host "Notepad++ is installed.";
+} elif ($w32 -ne $null) {
+    $applicationInstalled = $true
+    Write-Host "Notepad++ is installed.";
+    $applicationRegistry = $w32
 } else {
     Write-Host "Notepad++ is not installed.";
 }
