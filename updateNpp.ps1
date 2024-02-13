@@ -18,8 +18,12 @@ if ($applicationRegistry -ne $null) {
 if ($applicationInstalled) {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $64bit = $applicationRegistry.DisplayName.Contains("x64");
-    
-    if($applicationRegistry.MajorVersion -ne '7'){
+    $np = Get-Process Notepad++
+    if($np){
+        $np | kill
+    }
+
+    if($applicationRegistry.MajorVersion -ne '8'){
         Write-Host "Uninstalling previous version ($applicationRegistry.MajorVersion) before updating"
         Start-Process -FilePath $applicationRegistry.UninstallString -Args "/S" -Verb RunAs -Wait
     }
