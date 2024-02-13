@@ -8,7 +8,7 @@ Write-Host $applicationRegistry.MinorVersion;
 if ($applicationRegistry -ne $null) {
     $applicationInstalled = $true
     Write-Host "Notepad++ is installed.";
-} elif ($w32 -ne $null) {
+} elseif ($w32 -ne $null) {
     $applicationInstalled = $true
     Write-Host "Notepad++ is installed.";
     $applicationRegistry = $w32
