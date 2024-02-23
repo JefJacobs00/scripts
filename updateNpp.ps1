@@ -18,9 +18,9 @@ if ($applicationRegistry -ne $null) {
 if ($applicationInstalled) {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $64bit = $applicationRegistry.DisplayName.Contains("x64");
-    $np = Get-Process Notepad++
+    $np = Get-Process Notepad++;
     if($np){
-        $np | kill
+        $np | kill;
     }
 
     if($applicationRegistry.MajorVersion -ne '8'){
