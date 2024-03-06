@@ -1,3 +1,12 @@
+$chrometest = Test-Path 'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\chrome.exe'
+
+if($chrometest -eq $true){
+   Write-Host "Chrome is installed"
+}else{
+   Write-Host "Chrome is not installed"
+   exit
+}
+
 # see https://github.com/stellaraf/powershell-chrome-updates
 $Path = $env:TEMP;
 $Installer = "chrome_installer.exe";
