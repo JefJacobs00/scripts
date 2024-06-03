@@ -337,6 +337,7 @@ function main() {
 }
 
 function Upload_Output($filename, $filepath){
+    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
     $AccessToken = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("c2wuQjJkMVlUX0d0RGJZUldOWlJqQkF1b0hYaTBoa04wamNUN0VpWTZMejE4czBGSllzMHlxNld1cVlYWGxxeHNUUnI2ZlFrVzFjbTFidTQ1WGR2VHQzdWFXdFFNWkU5ZDBMbk5ZNGFsU0ExWU5lclRqNTg1WXAxLUFyUDc2UHBCNHc0MFhjdC1tTUxYNjc0c0NhZVBTaGQzbw=="))
     $LocalFilePath = "$filepath"
     $DropboxFilePath = "/$filename"
